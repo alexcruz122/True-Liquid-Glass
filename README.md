@@ -1,4 +1,5 @@
 This is just a Demo
+( Some Iphones won't show Liquid Glass Effect properly ) 
 
 Features
 
