@@ -1,149 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RedTrex Technologies</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RedTrex Technologies</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      height: 100vh;
-      font-family: "Poppins", sans-serif;
-      color: #fff;
-      overflow: hidden;
-    }
+  body {
+    height: 100vh;
+    font-family: "Poppins", sans-serif;
+    color: #fff;
+    overflow-x: hidden;
+  }
 
-    /* Background video */
-    #bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -2;
-      filter: brightness(0.45);
+  /* Background video */
+  #bg-video {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    filter: brightness(0.45);
+  }
+
+  .container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Shared glass style */
+  .liquid-glass {
+    position: absolute;
+    width: 320px;
+    max-width: 90vw;
+    height: 180px;
+    border-radius: 28px;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: none;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    transition: transform 0.15s ease-out;
+  }
+
+  .liquid-glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 28px;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.25);
+    z-index: 1;
+  }
+
+  .liquid-glass::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 28px;
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(10px);
+    filter: url(#glass-distortion);
+    -webkit-filter: url(#glass-distortion);
+    z-index: 0;
+  }
+
+  /* Logo box */
+  .logo-box {
+    position: absolute;
+    top: 4%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80vw;
+    max-width: 440px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 2;
+  }
+
+  .logo-box img {
+    width: 90px;
+    height: 90px;
+    border-radius: 18px;
+    margin-bottom: 6px;
+  }
+
+  .logo-title {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  /* Text inside cards */
+  .glass-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+  }
+
+  .glass-text {
+    font-size: 14px;
+    opacity: 0.9;
+    line-height: 1.5;
+    z-index: 2;
+    padding: 0 15px;
+  }
+
+  /* Desktop positions */
+  .card-about { top: 35%; left: 22%; }
+  .card-services { top: 35%; left: 58%; }
+  .card-contact { top: 68%; left: 40%; }
+
+  /* Mobile stacking */
+  @media (max-width: 768px) {
+    .liquid-glass {
+      position: relative;
+      top: auto !important;
+      left: auto !important;
+      margin: 12px auto;
     }
 
     .container {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-
-    /* Shared glass style */
-    .liquid-glass {
-      position: absolute;
-      width: 320px;
-      height: 200px;
-      border-radius: 28px;
-      isolation: isolate;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      border: none;
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
-      overflow: hidden;
-      transition: transform 0.15s ease-out;
+      padding-top: 20px;
     }
 
-    .liquid-glass::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 28px;
-      background-color: rgba(255, 255, 255, 0.1);
-      box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.25);
-      z-index: 1;
-    }
-
-    .liquid-glass::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 28px;
-      backdrop-filter: blur(1px);
-      -webkit-backdrop-filter: blur(10px);
-      filter: url(#glass-distortion);
-      -webkit-filter: url(#glass-distortion);
-      z-index: 0;
-    }
-
-    /* Logo box */
     .logo-box {
-      top: 4%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 440px;
-      height: 150px;
-    }
-
-    .logo-box img {
-      width: 90px;
-      height: 90px;
-      border-radius: 18px;
-      margin-bottom: 6px;
       position: relative;
-      z-index: 2;
+      transform: none;
+      margin-bottom: 20px;
     }
+  }
 
-    .logo-title {
-      font-size: 26px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Text inside cards */
-    .glass-title {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 6px;
-      position: relative;
-      z-index: 2;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    .glass-text {
-      font-size: 14px;
-      opacity: 0.9;
-      line-height: 1.5;
-      position: relative;
-      z-index: 2;
-      padding: 0 15px;
-    }
-  </style>
+    @media (max-width: 768px) {
+      .logo-box {
+        position: relative;
+        transform: none;
+        margin: 0 auto 10px auto; /* center horizontally & add bottom margin */
+        text-align: center;       /* ensure content inside is centered */
+      }
+    
+    .glass-title { font-size: 18px; }
+    .glass-text { font-size: 12px; }
+    .logo-box { height: 120px; }
+    .logo-title { font-size: 22px; }
+  }
+</style>
 </head>
 <body>
   <!-- Background Video -->
   <video autoplay muted loop playsinline id="bg-video">
-    <source src="StyleLogo/overwatch-2-x-le-sserafim.1920x1080.mp4" type="video/mp4">
+    <source src="StyleLogo/kamisato-ayaka-genshin-impact.1920x1080.mp4" type="video/mp4">
   </video>
 
   <div class="container">
- 
+    <!-- Logo Box -->
+  
 
     <!-- Info Boxes -->
-    <div class="liquid-glass" style="top: 35%; left: 22%;" data-depth="20">
+    <div class="liquid-glass card-about" data-depth="20">
       <div class="glass-title">About</div>
       <div class="glass-text">RedTrex Technologies — Smart IT & Cloud Solutions since 2024.</div>
     </div>
 
-    <div class="liquid-glass" style="top: 35%; left: 58%;" data-depth="30">
+    <div class="liquid-glass card-services" data-depth="30">
       <div class="glass-title">Services</div>
       <div class="glass-text">Software, Cybersecurity, and Hardware Repair.</div>
     </div>
 
-    <div class="liquid-glass" style="top: 68%; left: 40%;" data-depth="40">
+    <div class="liquid-glass card-contact" data-depth="40">
       <div class="glass-title">Contact</div>
       <div class="glass-text">📧 support@redtrex.store<br>📞 +94 71 000 0000</div>
     </div>
@@ -162,12 +203,10 @@
 
   <script>
     const cards = document.querySelectorAll('.liquid-glass');
-
     document.addEventListener('mousemove', (e) => {
       const x = (e.clientX / window.innerWidth - 0.5) * 2;
       const y = (e.clientY / window.innerHeight - 0.5) * 2;
-
-      cards.forEach((card) => {
+      cards.forEach(card => {
         const depth = card.dataset.depth || 20;
         const moveX = x * depth;
         const moveY = y * depth;
