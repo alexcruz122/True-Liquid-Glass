@@ -1,0 +1,26 @@
+body, html, #root {
+  height: 100%;
+  margin: 0;
+  background: linear-gradient(135deg, #0e1828, #172540, #223354);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Inter, sans-serif;
+}
+
+.glass-text {
+  position: relative;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 400;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.inner-shadow {
+  z-index: 0;
+}
+
+.frost-layer {
+  z-index: -1;
+}
